@@ -3,9 +3,9 @@ package shop;
 import java.util.List;
 //TODO настроить продукты, под сделанный склад и Типы продуктов
 public class Production {
-    private String productionType;
-    private double productionPrice;
-    private  String productionName;
+    private final String productionType;
+    private final double productionPrice;
+    private  String productionName; // TODO попробовать сделать ссылкой
     private int number;
 
     public Production(String productionType, double productionPrice, String productionName, int number) {

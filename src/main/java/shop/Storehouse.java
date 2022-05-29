@@ -8,38 +8,39 @@ import java.util.Map;
 public class Storehouse {
     private static Map<String, ProductionType> productions;
 
+//TODO Все решил, работаем только со складом, добавляем туда пока что только продукты
+
+    private Storehouse() {}
 
 
-    private Storehouse() {
-    }
-    public static Map<String, ProductionType> add(ProductionType production) {
+    public static void addProductionType(ProductionType production) {
         if (productions == null) {
             productions = new HashMap<>();
             productions.put(ProductionType.getTypeName(), production);
         } else productions.put(ProductionType.getTypeName(), production);
-        return productions;
+
     }
-    public static Map<String, ProductionType> add(Production production) throws ProductionTypeException {
-        List<Production> list = new ArrayList<Production>();
+
+    //TODO добавление нового продукта на склад полное реализовано
+    public static void addProduction(Production production) throws ProductionTypeException {
+        List<Production> list = new ArrayList<>();
         list.add(production);
         if (productions == null) {
             productions = new HashMap<>();
-            productions.put(production.getProductionName(),(ProductionType.addProductionTypeList(list)));
-        } else productions.put(production.getProductionName(),(ProductionType.addProductionTypeList(list)));
-        return productions;
-    }
+            productions.put(production.getProductionName(),(new ProductionType(list)));
+        } else if (productions.containsKey(production.getProductionName())){
+                productions.get(production.getProductionName()).addProductionTypeList(list);
+            }
+        }
 
+        //TODO доделать возвращение ссылки на объект
+public String containsProductionName(String productionName){
+        if (productions.containsKey(productionName)){
+            return
+        }
 
-
-
-//    public static Map<String, ProductionType> add(List<ProductionType> productions) {
-//        if (productions == null) {
-//            productions = new HashMap<>();
-//            productions.put(ProductionType.getTypeName(), productions);
-//        } else productions.put(ProductionType.getTypeName(), productions);
-//        return productions;
-//    }
-
+        return null;
+}
 
     public static Map<String, ProductionType> getProductions() {
         return productions;

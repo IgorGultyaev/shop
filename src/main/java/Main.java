@@ -2,9 +2,7 @@ import shop.Production;
 import shop.ProductionType;
 import shop.Storehouse;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
