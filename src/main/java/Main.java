@@ -1,5 +1,9 @@
 import shop.Production;
+import shop.ProductionType;
+import shop.Storehouse;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -40,13 +44,11 @@ public class Main {
         return choiceInt;
     }
 
-    Production production = new Production();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int choice = choice(scanner, mainMenu);
         System.out.println(choice);
-
 
 
 
