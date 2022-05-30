@@ -34,4 +34,14 @@ public class Production {
     public void setNumber(int number) {
         this.number = number;
     }
+
+    @Override
+    public String toString() {
+        return "Production{" +
+                "productionType='" + productionType + '\'' +
+                ", productionPrice=" + productionPrice +
+                ", productionName='" + productionName + '\'' +
+                ", number=" + number +
+                '}';
+    }
 }

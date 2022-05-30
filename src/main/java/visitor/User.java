@@ -1,6 +1,6 @@
 package visitor;
 
-public class User {
+public class User extends Visitor {
     private String userName;
     private double many;
 
