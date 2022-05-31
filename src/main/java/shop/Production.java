@@ -1,18 +1,19 @@
 package shop;
 
-import java.util.List;
 //TODO настроить продукты, под сделанный склад и Типы продуктов
 public class Production {
     private final String productionType;
     private final double productionPrice;
     private  String productionName; // TODO попробовать сделать ссылкой
     private int number;
+    private int productionID;
 
-    public Production(String productionType, double productionPrice, String productionName, int number) {
+    public Production(String productionType, double productionPrice, String productionName, int number, int productionID) {
         this.productionType = productionType;
         this.productionPrice = productionPrice;
         this.productionName = productionName;
         this.number = number;
+        this.productionID = productionID;
     }
 
     public String getProductionType() {
@@ -37,11 +38,12 @@ public class Production {
 
     @Override
     public String toString() {
-        return "Production{" +
-                "productionType='" + productionType + '\'' +
-                ", productionPrice=" + productionPrice +
-                ", productionName='" + productionName + '\'' +
-                ", number=" + number +
-                '}';
+        return   "Номер:" + productionID + " " + productionName +
+                " Цена:" + productionPrice + "₽ на складе:" + number + "шт. || ";
     }
+
+    public int getProductionID() {
+        return productionID;
+    }
+
 }

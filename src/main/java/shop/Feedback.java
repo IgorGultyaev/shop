@@ -5,5 +5,4 @@ public class Feedback {
     String string;
     public User user;
 
-
 }
