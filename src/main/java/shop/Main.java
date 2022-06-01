@@ -78,15 +78,15 @@ public class Main {
         storehouse.addProduction(2,"Смартфон","Apple","11 64GB Black",2,47999);
         storehouse.addProduction(3,"Смартфон","Honor","50 Lite 6+128GB Space Silver",2,20499);
 
-        storehouse.addProduction(4,"Ноутбук","Acer","50 Lite 6+128GB Space Silver",2,54999);
-        storehouse.addProduction(4,"Ноутбук","Acer","50 Lite 6+128GB Space Silver",2,20499);
-        storehouse.addProduction(4,"Ноутбук","Acer","50 Lite 6+128GB Space Silver",2,20499);
+        storehouse.addProduction(4,"Ноутбук","Acer","Aspire 5 A517-52-33P2",2,54999);
+        storehouse.addProduction(5,"Ноутбук","ASUS","R429MA-EK1506W",2,29999);
+        storehouse.addProduction(6,"Ноутбук","Honor","MagicBook X 15 i5/8/512 Gray",2,74999);
 
 
 //
 //        storehouse.addProduction(new Production(", 54999, " Aspire 5 A517-52-33P2", 2,4));
-//        storehouse.addProduction(new Production("Ноутбук", 29999, "ASUS R429MA-EK1506W", 2,5));
-//        storehouse.addProduction(new Production("Ноутбук", 74999, "Honor MagicBook X 15 i5/8/512 Gray", 2,6));
+//        storehouse.addProduction(new Production("Ноутбук", 29999, "ASUS ", 2,5));
+//        storehouse.addProduction(new Production("Ноутбук", , "Honor ", 2,6));
 //
 //        storehouse.addProduction(new Production("Телевизор", 19999, "Haier 32 Smart TV MX", 2,7));
 //        storehouse.addProduction(new Production("Телевизор", 17499, "Hi VHIX-43F169MSY", 2,8));
@@ -131,7 +131,10 @@ public class Main {
                 break;
                 case 1: printAvailableProducts(storehouse);
                 break;
-                case 2: filter(storehouse);
+                case 2: storehouse.filterProduction("Acer").forEach((key, value) -> System.out.println(value));
+                    break;
+
+                case 3: storehouse.filterProductionHashtag("Space").forEach((key, value) -> System.out.println(value));
                     break;
 
 

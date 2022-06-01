@@ -43,11 +43,21 @@ public class Storehouse {
 
     public Map<Integer, Production> filterProduction(String hashtag) {
 
-        Map<Integer, Production> filteredMap = this.productions.entrySet().stream()
+        return  this.productions.entrySet().stream()
                 .filter(x -> hashtag.equals(x.getValue().getManufacturer()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-return null;
+    }
+
+    public Map<Integer, Production> filterProductionHashtag(String hashtag) {
+
+        return  this.productions.entrySet().stream()
+                .filter(x -> (x.getValue().getManufacturer()
+                        + x.getValue().getProductionType()
+                        + x.getValue().getDescription())
+                        .contains(hashtag) )
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
     }
 
 }
