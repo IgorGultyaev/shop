@@ -21,9 +21,13 @@ public class Main {
     private static void printAvailableProducts(Storehouse storehouse){
         storehouse.printStorehouse();
     }
-    private static void filter(Storehouse storehouse){
+    private static void filter(Storehouse storehouse) throws FiltersParamException {
 //        storehouse.filterProduction(storehouse);
-        System.out.println(storehouse.filterProduction(storehouse));
+        //System.out.println(storehouse.filterProduction(storehouse));
+
+        storehouse.filterProduction("Смартфон");
+        printAvailableProducts(storehouse);
+
     }
 
     private static boolean strIsNum(String str) {
@@ -58,7 +62,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws ProductionTypeException {
+    public static void main(String[] args) throws ProductionTypeException, FiltersParamException {
 
         boolean exit = true;
 

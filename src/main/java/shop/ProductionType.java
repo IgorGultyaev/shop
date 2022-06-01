@@ -1,5 +1,8 @@
 package shop;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ProductionType {
 
@@ -22,6 +25,33 @@ public class ProductionType {
 
     public List<Production> getProductions() {
         return productions;
+    }
+
+
+
+
+
+
+    public void filterProduction(String ... param) throws FiltersParamException {
+
+        if (param.length !=1 ) {
+            throw new FiltersParamException("Недопустимое количество параметров. Для данного фильтра установите 1 параметр");
+        } else {
+            List<Production> list = productions.stream()
+                    .filter(x -> x.getProductionPrice()>2000)
+                    .collect(Collectors.toList());
+
+
+
+
+
+//            System.out.println(filteredMap);
+
+        }
+
+
+
+
     }
 
 // TODO попробовать сделать фильтр через set
