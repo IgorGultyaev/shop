@@ -4,28 +4,28 @@ package shop;
 public class Production {
     private final String productionType;
     private final double productionPrice;
-    private final String productionName; // TODO попробовать сделать ссылкой
-    private int number;
-    private final int productionID;
+    private final String description; // TODO попробовать сделать ссылкой
+    private final Integer productionID;
     private final String manufacturer;
+    private int number;
 
-    public Production(String productionType, double productionPrice, String productionName, int number, int productionID) {
+
+    public Production(Integer id, String productionType, String manufacturer, String description, int number, double productionPrice) {
         this.productionType = productionType;
         this.productionPrice = productionPrice;
-        this.productionName = productionName;
+        this.description = description;
         this.number = number;
-        this.productionID = productionID;
-        this.manufacturer = productionName.split(" ")[0];
-
+        this.productionID = id;
+        this.manufacturer = manufacturer;
     }
 
-    public Production(String productionType, double productionPrice, String productionName, int number, int productionID, String manufacturer) {
-        this.productionType = productionType;
-        this.productionPrice = productionPrice;
-        this.productionName = productionName;
-        this.number = number;
-        this.productionID = productionID;
-        this.manufacturer = manufacturer;
+    @Override
+    public String toString() {
+        return "Номер:" + productionID + " " + manufacturer +" " + description +
+                " Цена:" + productionPrice + "₽ на складе:" + number + "шт. || ";
+    }
+
+    public void printingAvailableProducts(){
 
     }
 
@@ -37,22 +37,12 @@ public class Production {
         return productionPrice;
     }
 
-    public String getProductionName() {
-        return productionName;
+    public String getDescription() {
+        return description;
     }
 
     public int getNumber() {
         return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    @Override
-    public String toString() {
-        return   "Номер:" + productionID + " " + productionName +
-                " Цена:" + productionPrice + "₽ на складе:" + number + "шт. || ";
     }
 
     public int getProductionID() {

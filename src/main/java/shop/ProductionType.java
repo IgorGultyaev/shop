@@ -1,8 +1,6 @@
 package shop;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ProductionType {
 
@@ -15,7 +13,7 @@ public class ProductionType {
     }
 
     public String getTypeName() {
-        return this.productions.get(0).getProductionName();
+        return this.productions.get(0).getDescription();
     }
 
     @Override

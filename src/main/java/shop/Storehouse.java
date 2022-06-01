@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class Storehouse {
     private static Storehouse storehouse = null;
-    private Map<String, ProductionType> productions;
-    private Map<String, ProductionType> filteredProductions;
+    private Map<Integer, Production> productions;
+
 
 
     private Storehouse() {
@@ -23,45 +23,31 @@ public class Storehouse {
         } else return storehouse;
     }
 
-    public void addProduction(Production production) {
+    public void addProduction(Integer id,String productionType,
+                              String manufacturer,
+                              String description,
+                              int number,
+                              double productionPrice){
 
-        //TODO при добавлении на склад необходимо сделать проверку уникальности номера
+        productions.put(id, new Production(id,
+                productionType,manufacturer,
+                description,number,productionPrice));
 
-        String productionType = production.getProductionType();
-        List<Production> list = new ArrayList<>();
-        list.add(production);
-        if (productions.containsKey(productionType)) {
-            productions.get(productionType).getProductions().add(production);
-        } else productions.put(production.getProductionType(), (new ProductionType(list)));
     }
 
-    public void printStorehouse() {
-        productions.forEach((key, value)
-                -> System.out.println(key + " " +
-                (productions.getOrDefault(value, value))));
+    public void printingProducts(){
+        if (!productions.containsKey(null)) {
+            this.productions.forEach((key, value) -> System.out.println(key + " : " + value));
+        } else System.out.println("Список товаров недоступен");
     }
 
-    Map<String, ProductionType> getProductions() {
-        return productions;
-    }
+    public Map<Integer, Production> filterProduction(String hashtag) {
 
-
-    public Map<String, ProductionType> filterProductionType(String productionType) {
-        return productions.entrySet().stream()
-                .filter(x ->productionType.equals(x.getKey()))
+        Map<Integer, Production> filteredMap = this.productions.entrySet().stream()
+                .filter(x -> hashtag.equals(x.getValue().getManufacturer()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+return null;
     }
 
-    public Map<String, ProductionType> filterHashtag(String hashtag){
-        Map<String, ProductionType> filtered = new HashMap<>();
-
-        for (Map.Entry<String, ProductionType> productionTypeMap: productions.entrySet()) {
-
-
-            productionTypeMap.getValue().getProductions().stream()
-        }
-
-
-        return null;
-    }
 }
