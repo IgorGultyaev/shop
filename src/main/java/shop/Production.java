@@ -4,9 +4,10 @@ package shop;
 public class Production {
     private final String productionType;
     private final double productionPrice;
-    private  String productionName; // TODO попробовать сделать ссылкой
+    private final String productionName; // TODO попробовать сделать ссылкой
     private int number;
-    private int productionID;
+    private final int productionID;
+    private final String manufacturer;
 
     public Production(String productionType, double productionPrice, String productionName, int number, int productionID) {
         this.productionType = productionType;
@@ -14,6 +15,18 @@ public class Production {
         this.productionName = productionName;
         this.number = number;
         this.productionID = productionID;
+        this.manufacturer = productionName.split(" ")[0];
+
+    }
+
+    public Production(String productionType, double productionPrice, String productionName, int number, int productionID, String manufacturer) {
+        this.productionType = productionType;
+        this.productionPrice = productionPrice;
+        this.productionName = productionName;
+        this.number = number;
+        this.productionID = productionID;
+        this.manufacturer = manufacturer;
+
     }
 
     public String getProductionType() {
@@ -44,6 +57,10 @@ public class Production {
 
     public int getProductionID() {
         return productionID;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
     }
 
 }

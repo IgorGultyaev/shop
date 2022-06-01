@@ -1,7 +1,10 @@
 package shop;
 
 public interface Filter{
-    void filterProduction(String...param) throws FiltersParamException;
+    void filterHashtag(String...param) throws FiltersParamException;
+
+
+
     void resetFilters();
 };
 //    default Map<String, ProductionType> filterProduction(Storehouse storehouse){
