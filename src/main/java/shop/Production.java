@@ -21,7 +21,7 @@ public class Production {
 
     @Override
     public String toString() {
-        return "Номер:" + productionID + " " + manufacturer +" " + description +
+        return "Номер:" + productionID + " " + productionType + " " + manufacturer +" " + description +
                 " Цена:" + productionPrice + "₽ на складе:" + number + "шт. || ";
     }
 
@@ -45,7 +45,7 @@ public class Production {
         return number;
     }
 
-    public int getProductionID() {
+    public Integer getProductionID() {
         return productionID;
     }
 

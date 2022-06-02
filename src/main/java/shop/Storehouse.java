@@ -23,6 +23,10 @@ public class Storehouse {
         } else return storehouse;
     }
 
+    public void addProduction(Map<Integer, Production> productions){
+        this.productions = productions;
+    }
+
     public void addProduction(Integer id,String productionType,
                               String manufacturer,
                               String description,
@@ -36,7 +40,7 @@ public class Storehouse {
     }
 
     public void printingProducts(){
-        if (!productions.containsKey(null)) {
+        if (productions!=null) {
             this.productions.forEach((key, value) -> System.out.println(key + " : " + value));
         } else System.out.println("Список товаров недоступен");
     }
@@ -59,5 +63,13 @@ public class Storehouse {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
     }
+    public Map<Integer, Production> filterProductionByPrice(double min, double max) {
+
+        return  this.productions.entrySet().stream()
+                .filter(x -> x.getValue().getProductionPrice() > min && x.getValue().getProductionPrice() < max)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+    }
+
 
 }
