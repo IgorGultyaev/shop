@@ -1,4 +1,7 @@
 package Bank;
 
-public class BankAccount {
+public interface BankAccount {
+    default void addMany() {
+        }
+
 }

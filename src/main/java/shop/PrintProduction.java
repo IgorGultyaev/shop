@@ -3,7 +3,9 @@ package shop;
 import java.util.Map;
 
 public interface PrintProduction {
-    Map<Integer, Production> productions = null;
-    default void printingProducts() {
+    default void printingProducts(Map<Integer, Production> productions) {
+        if (productions!=null) {
+            productions.forEach((key, value) -> System.out.println(key + " : " + value));
+        } else System.out.println("Список товаров недоступен");
     }
 }

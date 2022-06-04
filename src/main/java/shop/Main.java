@@ -1,18 +1,10 @@
 package shop;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import visitor.User;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
 
-public class Main {
+public class Main implements LoadingData{
 
     private static final String[] cartMenu = {"Введите номер товара, который хотите добавить в корзину", "Ноутбуки", "Телевизоры",
             "Холодильники и морозильные камеры", "Стиральные машины", "Наушники", "Пылесосы",
@@ -36,40 +28,8 @@ public class Main {
     };
     private static final String fileName = "new_data.json";
 
-    private static String readString(String file) {
-        String line;
-        StringBuilder json = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-
-            while ((line = reader.readLine()) != null) {
-                json.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return json.toString().replaceAll("\\s+", "");
-    }
-
-    static Map<Integer, Production> jsonToProduction(String json) throws ParseException, ProductionTypeException {
-
-        Map<Integer, Production> productions = new HashMap<>();
-        JSONParser jsonParser = new JSONParser();
-        JSONArray lang = (JSONArray) jsonParser.parse(json);
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-
-        for (Object jsonObj : lang) {
-            Production production = gson.fromJson(jsonObj.toString(), Production.class);
-            if (productions.containsKey(production.getProductionID())){
-                throw new ProductionTypeException("Поле productionID не должно повторяться");
-            }
-            productions.put(production.getProductionID(),production);
-        }
-        return productions;
-    }
     private static void printAvailableProducts(Storehouse storehouse) {
-        storehouse.printingProducts();
+        storehouse.printingProducts(storehouse.getProductions());
     }
 
     private static boolean strIsNum(String str) {
@@ -105,15 +65,16 @@ public class Main {
 
     public static void main(String[] args) throws ProductionTypeException, ParseException {
 
-        Command command = new Command();
-
-
+        Tracking tracking = new Tracking();
 
         boolean exit = true;
         User user = new User("Игорь",100_000);
+        Seller seller = new Seller();
+        Cart cart = new Cart(user);
 
         Storehouse storehouse = Storehouse.getStorehouse();
-        storehouse.downloadProduction(jsonToProduction(readString(fileName)));
+        storehouse.downloadProduction(ParserJsonToProduction
+                .jsonToProduction(LoadingData.readString(fileName)));
 
         boolean submenu = false;
         int choice = 0;
@@ -127,6 +88,7 @@ public class Main {
                     break;
                 case 1:
                     printAvailableProducts(storehouse);
+//                    System.out.println(storehouse);
                     break;
                 case 2:
                     choice = choice(scanner, filterMenu);
@@ -134,14 +96,21 @@ public class Main {
                     submenu = true;
                     break;
                 case 3:
+                    System.out.print("Введите номер товара для добавления в корзину>");
                     String productNumStr = scanner.nextLine();
                     if (strIsNum(productNumStr)) {
-                        System.out.println(storehouse.removeProduction(Integer.parseInt(productNumStr)));
+                        int productNum = Integer.parseInt(productNumStr);
+                        System.out.println("Товары добавленные в корзину:");
+                        cart.addPurchases(storehouse.getProduction(productNum));
+                        cart.printingProducts(cart.purchases);
+                        System.out.println(cart.getPrice());
                     } System.out.println("Введённое значение должно быть числовым");
 
-
                     break;
-                case 4:
+                case 4:// Покупка
+                    Purchases purchases = new Purchases(cart);
+                    System.out.println(user.getMany());
+                    System.out.println(user.getPurchases());
 
                     break;
                 case 20:

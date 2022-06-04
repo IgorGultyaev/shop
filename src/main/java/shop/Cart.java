@@ -4,22 +4,34 @@ import visitor.User;
 
 import java.util.HashMap;
 
-public class Cart implements PrintProduction{
+public class Cart implements PrintProduction {
+    HashMap<Integer, Production> purchases;
     private User user;
-    HashMap <String, Production> purchases;
-
-    public HashMap<String, Production> getPurchases() {
-        return purchases;
-    }
+    private double price;
 
     public Cart(User user) {
         this.user = user;
+        purchases = new HashMap<>();
     }
 
-    @Override
-    public void printingProducts() {
-        if (purchases!=null) {
-            this.purchases.forEach((key, value) -> System.out.println(key + " : " + value));
-        } else System.out.println("Корзина пуста");
+    public HashMap<Integer, Production> getPurchases() {
+        return purchases;
+    }
+
+    public boolean addPurchases(Production production) {
+
+        purchases.put(production.getProductionID(), production);
+        price = 0;
+        purchases.forEach((key, value) -> price = price + value.getProductionPrice());
+
+        return true;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

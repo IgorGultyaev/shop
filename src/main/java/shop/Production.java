@@ -7,7 +7,7 @@ public class Production {
     private final String description; // TODO попробовать сделать ссылкой
     private final Integer productionID;
     private final String manufacturer;
-    private int number;
+    private int number; //теперь это номер типа товара
 
 
     public Production(Integer id, String productionType, String manufacturer, String description, int number, double productionPrice) {
@@ -22,7 +22,7 @@ public class Production {
     @Override
     public String toString() {
         return "Номер:" + productionID + " " + productionType + " " + manufacturer +" " + description +
-                " Цена:" + productionPrice + "₽ на складе:" + number + "шт. || ";
+                " Цена:" + productionPrice  + " || ";
     }
 
     public void printingAvailableProducts(){
