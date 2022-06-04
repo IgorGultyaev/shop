@@ -1,0 +1,122 @@
+[
+  {
+    "productionID": 1,
+    "productionType": "Смартфон",
+    "manufacturer": "Xiaomi",
+    "description": "Redmi 9A 32GB Granite Gray",
+    "number": 2,
+    "productionPrice": 8999
+  },
+  {
+    "productionID": 2,
+    "productionType": "Смартфон",
+    "manufacturer": "Apple",
+    "description": "11 64GB Black",
+    "number": 2,
+    "productionPrice": 47999
+  },
+  {
+    "productionID": 3,
+    "productionType": "Смартфон",
+    "manufacturer": "Honor",
+    "description": "50 Lite 6+128GB Space Silver",
+    "number": 2,
+    "productionPrice": 20499
+  },
+  {
+    "productionID": 4,
+    "productionType": "Ноутбук",
+    "manufacturer": "Acer",
+    "description": "Aspire 5 A517-52-33P2",
+    "number": 2,
+    "productionPrice": 54999
+  },
+  {
+    "productionID": 5,
+    "productionType": "Ноутбук",
+    "manufacturer": "ASUS",
+    "description": "R429MA-EK1506W",
+    "number": 3,
+    "productionPrice": 29999
+  },
+  {
+    "productionID": 6,
+    "productionType": "Ноутбук",
+    "manufacturer": "Honor",
+    "description": "MagicBook X 15 i5/8/512 Gray",
+    "number": 2,
+    "productionPrice": 74999
+  },
+  {
+    "productionID": 7,
+    "productionType": "Телевизор",
+    "manufacturer": "Haier",
+    "description": "32 Smart TV MX",
+    "number": 2,
+    "productionPrice": 19999
+  },
+  {
+    "productionID": 8,
+    "productionType": "Телевизор",
+    "manufacturer": "Hi",
+    "description": "VHIX-43F169MSY",
+    "number": 2,
+    "productionPrice": 17499
+  },
+  {
+    "productionID": 9,
+    "productionType": "Телевизор",
+    "manufacturer": "Novex",
+    "description": "NWX-32F103TSY Titanium",
+    "number": 2,
+    "productionPrice": 15999
+  },
+  {
+    "productionID": 10,
+    "productionType": "Холодильник",
+    "manufacturer": "Haier",
+    "description": "C2F637CWMV",
+    "number": 2,
+    "productionPrice": 51999
+  },
+  {
+    "productionID": 11,
+    "productionType": "Холодильник",
+    "manufacturer": "Beko",
+    "description": "RCSK 335M20 W",
+    "number": 2,
+    "productionPrice": 29999
+  },
+  {
+    "productionID": 12,
+    "productionType": "Холодильник",
+    "manufacturer": "LG",
+    "description": "GA-B509DQXL",
+    "number": 2,
+    "productionPrice": 46999
+  },
+  {
+    "productionID": 13,
+    "productionType": "Стиральные машины",
+    "manufacturer": "Haier",
+    "description": "HW70-BP12969A",
+    "number": 2,
+    "productionPrice": 41999
+  },
+  {
+    "productionID": 14,
+    "productionType": "Стиральные машины",
+    "manufacturer": "Haier",
+    "description": "HW60-BP10929A",
+    "number": 2,
+    "productionPrice": 32999
+  },
+  {
+    "productionID": 15,
+    "productionType": "Стиральные машины",
+    "manufacturer": "Whirlpool",
+    "description": "FWSG71083WSV RU",
+    "number": 2,
+    "productionPrice": 38999
+  }
+]
