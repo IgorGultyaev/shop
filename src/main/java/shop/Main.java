@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import visitor.User;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,7 +14,7 @@ import java.util.*;
 
 public class Main {
 
-    private static final String[] productType = {"Смартфоны", "Ноутбуки", "Телевизоры",
+    private static final String[] cartMenu = {"Введите номер товара, который хотите добавить в корзину", "Ноутбуки", "Телевизоры",
             "Холодильники и морозильные камеры", "Стиральные машины", "Наушники", "Пылесосы",
             "Кондиционеры", "Планшеты", "Миксеры и блендеры"};
 
@@ -50,7 +51,7 @@ public class Main {
         return json.toString().replaceAll("\\s+", "");
     }
 
-    static Map<Integer, Production> jsonToProduction(String json) throws ParseException {
+    static Map<Integer, Production> jsonToProduction(String json) throws ParseException, ProductionTypeException {
 
         Map<Integer, Production> productions = new HashMap<>();
         JSONParser jsonParser = new JSONParser();
@@ -59,9 +60,10 @@ public class Main {
         Gson gson = builder.create();
 
         for (Object jsonObj : lang) {
-
             Production production = gson.fromJson(jsonObj.toString(), Production.class);
-//            System.out.println(production.getProductionID());
+            if (productions.containsKey(production.getProductionID())){
+                throw new ProductionTypeException("Поле productionID не должно повторяться");
+            }
             productions.put(production.getProductionID(),production);
         }
         return productions;
@@ -101,12 +103,17 @@ public class Main {
         return choiceInt;
     }
 
-    public static void main(String[] args) throws ProductionTypeException, FiltersParamException, ParseException {
+    public static void main(String[] args) throws ProductionTypeException, ParseException {
+
+        Command command = new Command();
+
+
 
         boolean exit = true;
+        User user = new User("Игорь",100_000);
 
         Storehouse storehouse = Storehouse.getStorehouse();
-        storehouse.addProduction(jsonToProduction(readString(fileName)));
+        storehouse.downloadProduction(jsonToProduction(readString(fileName)));
 
         boolean submenu = false;
         int choice = 0;
@@ -127,7 +134,11 @@ public class Main {
                     submenu = true;
                     break;
                 case 3:
-                    System.out.println("dededed");
+                    String productNumStr = scanner.nextLine();
+                    if (strIsNum(productNumStr)) {
+                        System.out.println(storehouse.removeProduction(Integer.parseInt(productNumStr)));
+                    } System.out.println("Введённое значение должно быть числовым");
+
 
                     break;
                 case 4:

@@ -1,18 +1,12 @@
 package shop;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
-public class Storehouse {
+public class Storehouse implements PrintProduction{
     private static Storehouse storehouse = null;
     private Map<Integer, Production> productions;
-
-
-
     private Storehouse() {
         this.productions = new HashMap<>();
     }
@@ -23,22 +17,27 @@ public class Storehouse {
         } else return storehouse;
     }
 
-    public void addProduction(Map<Integer, Production> productions){
+    public boolean downloadProduction(Map<Integer, Production> productions){
+
         this.productions = productions;
+        return true;
     }
 
     public void addProduction(Integer id,String productionType,
                               String manufacturer,
                               String description,
                               int number,
-                              double productionPrice){
+                              double productionPrice) throws ProductionTypeException {
 
-        productions.put(id, new Production(id,
-                productionType,manufacturer,
-                description,number,productionPrice));
-
+        if (productions.containsKey(id)){
+            throw new ProductionTypeException("Поле productionID не должно повторяться");
+        }else {
+            productions.put(id, new Production(id,
+                    productionType,manufacturer,
+                    description,number,productionPrice));
+        }
     }
-
+@Override
     public void printingProducts(){
         if (productions!=null) {
             this.productions.forEach((key, value) -> System.out.println(key + " : " + value));
@@ -64,12 +63,14 @@ public class Storehouse {
 
     }
     public Map<Integer, Production> filterProductionByPrice(double min, double max) {
-
         return  this.productions.entrySet().stream()
                 .filter(x -> x.getValue().getProductionPrice() > min && x.getValue().getProductionPrice() < max)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
     }
 
+    public Production removeProduction(Integer num){
 
+
+        return this.productions.remove(num);
+    }
 }
