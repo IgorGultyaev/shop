@@ -14,10 +14,11 @@ public class Main implements LoadingData{
             "1 - Вывод доступных для покупки товаров",
             "2 - Фильтрация товаров по ключевым словам, ценам, производителям",
             "3 - Составление продуктовой корзины пользователя",
-            "4 - Трекинг заказа в системе доставки",
-            "5 - Возврат заказа, повторение заказа",
-            "6 - Система рейтинга для товаров",
-            "7 - Простая рекомендательная система для покупок",
+            "4 - Вывести на экран товар, который в корзине",
+            "5 - Купить товар, который в корзине",
+            "6 - Пополнить счет",
+            "7 - Трекинг заказа в системе доставки",
+            "8 - Трекинг заказа в системе доставки",
             "0 - Выход"};
 
     private static final String[] filterMenu = {"Выберите по какому критерию отфильтровать",
@@ -88,7 +89,6 @@ public class Main implements LoadingData{
                     break;
                 case 1:
                     printAvailableProducts(storehouse);
-//                    System.out.println(storehouse);
                     break;
                 case 2:
                     choice = choice(scanner, filterMenu);
@@ -102,16 +102,17 @@ public class Main implements LoadingData{
                         int productNum = Integer.parseInt(productNumStr);
                         System.out.println("Товары добавленные в корзину:");
                         cart.addPurchases(storehouse.getProduction(productNum));
-                        cart.printingProducts(cart.purchases);
+                        cart.printingProducts(cart.getPurchases());
                         System.out.println(cart.getPrice());
                     } System.out.println("Введённое значение должно быть числовым");
 
                     break;
-                case 4:// Покупка
-                    Purchases purchases = new Purchases(cart);
-                    System.out.println(user.getMany());
-                    System.out.println(user.getPurchases());
-
+                case 4:// печать корзины
+                    cart.printingProducts(cart.getPurchases());
+                    System.out.println("Итого: " + cart.getPrice());
+                    break;
+                case 5:// Покупка
+                    Purchases purchases = new Purchases(cart,storehouse);
                     break;
                 case 20:
                     submenu = false;

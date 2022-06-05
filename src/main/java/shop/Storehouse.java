@@ -82,10 +82,12 @@ public class Storehouse implements PrintProduction, Transaction{
 
     @Override
     public void execute(Cart cart) {
-        productions.entrySet().remove(cart.purchases);// TODO Удаление со склада в таков виде не работает
+        cart.getPurchases().forEach((key, value) -> this.productions.remove(key,value));
     }
 
     public Map<Integer, Production> getProductions() {
         return productions;
     }
+
 }
+

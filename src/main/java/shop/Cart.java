@@ -5,7 +5,7 @@ import visitor.User;
 import java.util.HashMap;
 
 public class Cart implements PrintProduction {
-    HashMap<Integer, Production> purchases;
+    private HashMap<Integer, Production> purchases;
     private User user;
     private double price;
 
@@ -15,7 +15,8 @@ public class Cart implements PrintProduction {
     }
 
     public HashMap<Integer, Production> getPurchases() {
-        return purchases;
+
+        return (HashMap<Integer, Production>) purchases.clone();
     }
 
     public boolean addPurchases(Production production) {
@@ -33,5 +34,9 @@ public class Cart implements PrintProduction {
 
     public User getUser() {
         return user;
+    }
+
+    void clear(){
+        this.purchases.clear();
     }
 }

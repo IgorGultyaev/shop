@@ -42,4 +42,5 @@ public class User extends Visitor implements Payment, Transaction, PrintProducti
     public Map<Integer, Production> getPurchases() { // TODO удалить метод сделать печать
         return purchases;
     }
+
 }
