@@ -43,4 +43,9 @@ public class User extends Visitor implements Payment, Transaction, PrintProducti
         return purchases;
     }
 
+    public void refute(String msg) {
+        System.out.println("Сообщение у покупателя " + msg +
+                " доставлено");
+    }
+
 }

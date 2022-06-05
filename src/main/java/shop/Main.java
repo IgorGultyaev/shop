@@ -1,5 +1,6 @@
 package shop;
 
+import Delivery.Emitter;
 import org.json.simple.parser.ParseException;
 import visitor.User;
 import java.util.*;
@@ -66,8 +67,8 @@ public class Main implements LoadingData{
 
     public static void main(String[] args) throws ProductionTypeException, ParseException {
 
-        Tracking tracking = new Tracking();
-
+//        Tracking tracking = new Tracking();
+        Emitter emitter = new Emitter();
         boolean exit = true;
         User user = new User("Игорь",100_000);
         Seller seller = new Seller();
@@ -114,6 +115,21 @@ public class Main implements LoadingData{
                 case 5:// Покупка
                     Purchases purchases = new Purchases(cart,storehouse);
                     break;
+
+                case 6:// пополнить счёт
+
+                    break;
+
+                case 7:// отслеживание посылки
+                    emitter.subscribe(user::refute);
+                    emitter.subscribe(seller::refute);
+                    StringBuilder s = new StringBuilder();
+                    user.getPurchases().forEach((key, value) ->
+                            s.append(value.getProductionType() + " " + value.getManufacturer()+ " , "));
+                    emitter.tracking(s.toString());// TODO перенести весь код в службу доставки
+                    //TODO а вместо строки передавать туда хэш с покупками пользователя
+                    break;
+
                 case 20:
                     submenu = false;
                     break;

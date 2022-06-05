@@ -39,13 +39,6 @@ public class Storehouse implements PrintProduction, Transaction{
         }
     }
 
-//    public void printingProducts(HashMap<Integer, Production> productions){
-////        if (productions!=null) {
-////            this.productions.forEach((key, value) -> System.out.println(key + " : " + value));
-////        } else System.out.println("Список товаров недоступен");
-//
-//    }
-
     public Map<Integer, Production> filterProduction(String hashtag) {
 
         return  this.productions.entrySet().stream()

@@ -20,5 +20,9 @@ public class Seller implements Payment, Transaction {
             return new Seller();
         } else return seller;
     }
+    public void refute(String msg) {
+        System.out.println("Сообщение у продавца " + msg +
+                " доставлено");
+    }
 
 }
