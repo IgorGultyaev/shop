@@ -79,7 +79,7 @@ public class Storehouse implements PrintProduction, Transaction{
     }
 
     public Map<Integer, Production> getProductions() {
-        return productions;
+        return new HashMap<>(productions);
     }
 
 }

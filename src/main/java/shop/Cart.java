@@ -15,8 +15,7 @@ public class Cart implements PrintProduction {
     }
 
     public HashMap<Integer, Production> getPurchases() {
-
-        return (HashMap<Integer, Production>) purchases.clone();
+        return new HashMap<>(purchases);
     }
 
     public boolean addPurchases(Production production) {

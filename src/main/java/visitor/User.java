@@ -39,8 +39,9 @@ public class User extends Visitor implements Payment, Transaction, PrintProducti
         many = many - cart.getPrice();
     }
 
-    public Map<Integer, Production> getPurchases() { // TODO удалить метод сделать печать
-        return purchases;
+    public Map<Integer, Production> getPurchases() {
+        return new HashMap<>(purchases);
+
     }
 
     public void refute(String msg) {

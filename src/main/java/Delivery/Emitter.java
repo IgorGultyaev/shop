@@ -1,7 +1,10 @@
 package Delivery;
 
+import shop.Production;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
     public class Emitter {
@@ -13,10 +16,17 @@ import java.util.function.Consumer;
 
         public void tracking(String msg) {
 
-//            Tracking tracking = new Tracking();
 // TODO Сделать зависимость от  трэкинга
-            System.out.println("I say " + msg);
-            subscribers.forEach(s -> s.accept(msg));
+
+//            StringBuilder msg = new StringBuilder();
+//            purchases.forEach((key, value) ->
+//                    msg.append(value.getProductionType()).append(" ").append(value.getManufacturer()).append(" , "));
+
+
+//            System.out.println(msg);
+
+//            Tracking tracking = new Tracking();
+            subscribers.forEach(s -> s.accept(msg.toString()));
         }
     }
 

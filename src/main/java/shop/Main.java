@@ -1,6 +1,7 @@
 package shop;
 
 import Delivery.Emitter;
+import Delivery.Tracking;
 import org.json.simple.parser.ParseException;
 import visitor.User;
 import java.util.*;
@@ -17,8 +18,8 @@ public class Main implements LoadingData{
             "3 - Составление продуктовой корзины пользователя",
             "4 - Вывести на экран товар, который в корзине",
             "5 - Купить товар, который в корзине",
-            "6 - Пополнить счет",
-            "7 - Трекинг заказа в системе доставки",
+            "6 - Трекинг заказа в системе доставки",
+            "7 - ",
             "8 - Трекинг заказа в системе доставки",
             "0 - Выход"};
 
@@ -117,17 +118,18 @@ public class Main implements LoadingData{
                     break;
 
                 case 6:// пополнить счёт
+                    emitter.subscribe(user::refute);
+                    emitter.subscribe(seller::refute);
+                    Tracking tracking = new Tracking(emitter,user.getPurchases());
 
+//                    emitter.tracking(user.getPurchases());
                     break;
 
                 case 7:// отслеживание посылки
-                    emitter.subscribe(user::refute);
-                    emitter.subscribe(seller::refute);
-                    StringBuilder s = new StringBuilder();
-                    user.getPurchases().forEach((key, value) ->
-                            s.append(value.getProductionType() + " " + value.getManufacturer()+ " , "));
-                    emitter.tracking(s.toString());// TODO перенести весь код в службу доставки
-                    //TODO а вместо строки передавать туда хэш с покупками пользователя
+
+                    user.getPurchases().clear();
+                    System.out.println(user.getPurchases());
+
                     break;
 
                 case 20:
