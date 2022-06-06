@@ -21,11 +21,11 @@ public class Production {
 
     @Override
     public String toString() {
-        return "Номер:" + productionID + " " + productionType + " " + manufacturer +" " + description +
-                " Цена:" + productionPrice  + " || ";
+        return "Номер:" + productionID + " " + productionType + " " + manufacturer + " " + description +
+                " Цена:" + productionPrice + " || ";
     }
 
-    public void printingAvailableProducts(){
+    public void printingAvailableProducts() {
 
     }
 

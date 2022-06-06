@@ -1,18 +1,12 @@
 package shop;
 
-import visitor.Payment;
 
-public class Seller implements Payment, Transaction {
-    double many;
+public class Seller implements Transaction {
     static Seller seller;
+    double many;
 
     public Seller() {
 
-    }
-
-    @Override
-    public void execute(Cart cart) {
-      many = many + cart.getPrice();
     }
 
     public static Seller getSeller() {
@@ -20,9 +14,22 @@ public class Seller implements Payment, Transaction {
             return new Seller();
         } else return seller;
     }
+
+    @Override
+    public void execute(Cart cart,boolean thereOrBack) {
+        if (thereOrBack){
+            many = many + cart.getPrice();
+            System.out.println(many + "Денег у продавца");
+
+        } else {
+            many = many - cart.getPrice();
+            System.out.println(many+ "Денег у продавца");
+        }
+
+    }
+
     public void refute(String msg) {
-        System.out.println("Сообщение у продавца " + msg +
-                " доставлено");
+        System.out.println("Сообщение у продавца " + msg);
     }
 
 }

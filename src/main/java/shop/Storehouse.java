@@ -74,8 +74,15 @@ public class Storehouse implements PrintProduction, Transaction{
     }
 
     @Override
-    public void execute(Cart cart) {
-        cart.getPurchases().forEach((key, value) -> this.productions.remove(key,value));
+    public void execute(Cart cart,boolean thereOrBack) {
+        if (thereOrBack){
+            cart.getPurchases().forEach((key, value) -> this.productions.remove(key,value));
+        } else {
+            this.productions.putAll(cart.getPurchases());
+            System.out.println(cart.getPurchases());
+            System.out.println(" продукты добавлены на склад");
+        }
+
     }
 
     public Map<Integer, Production> getProductions() {

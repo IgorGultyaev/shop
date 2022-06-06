@@ -27,6 +27,12 @@ public class Cart implements PrintProduction {
         return true;
     }
 
+    public void backProduction(HashMap<Integer, Production> purchases) {
+        this.purchases.putAll(purchases);
+        price = 0;
+        purchases.forEach((key, value) -> price = price + value.getProductionPrice());
+    }
+
     public double getPrice() {
         return price;
     }
@@ -35,7 +41,7 @@ public class Cart implements PrintProduction {
         return user;
     }
 
-    void clear(){
+    void clear() {
         this.purchases.clear();
     }
 }
