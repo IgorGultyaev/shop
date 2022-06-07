@@ -2,7 +2,6 @@ package shop;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Storehouse implements PrintProduction, Transaction{
     private static Storehouse storehouse = null;
@@ -19,8 +18,8 @@ public class Storehouse implements PrintProduction, Transaction{
     }
 
     public boolean downloadProduction(Map<Integer, Production> productions){
-
         this.productions = productions;
+
         return true;
     }
 
@@ -39,29 +38,29 @@ public class Storehouse implements PrintProduction, Transaction{
         }
     }
 
-    public Map<Integer, Production> filterProduction(String hashtag) {
+//    public Map<Integer, Production> filterProduction(String hashtag) {
+//
+//        return  this.productions.entrySet().stream()
+//                .filter(x -> hashtag.equals(x.getValue().getManufacturer()))
+//                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+//
+//    }
 
-        return  this.productions.entrySet().stream()
-                .filter(x -> hashtag.equals(x.getValue().getManufacturer()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+//    public Map<Integer, Production> filterProductionHashtag(String hashtag) {
+//
+//        return  this.productions.entrySet().stream()
+//                .filter(x -> (x.getValue().getManufacturer()
+//                        + x.getValue().getProductionType()
+//                        + x.getValue().getDescription())
+//                        .contains(hashtag) )
+//                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-    }
-
-    public Map<Integer, Production> filterProductionHashtag(String hashtag) {
-
-        return  this.productions.entrySet().stream()
-                .filter(x -> (x.getValue().getManufacturer()
-                        + x.getValue().getProductionType()
-                        + x.getValue().getDescription())
-                        .contains(hashtag) )
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-    }
-    public Map<Integer, Production> filterProductionByPrice(double min, double max) {
-        return  this.productions.entrySet().stream()
-                .filter(x -> x.getValue().getProductionPrice() > min && x.getValue().getProductionPrice() < max)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
+//    }
+//    public Map<Integer, Production> filterProductionByPrice(double min, double max) {
+//        return  this.productions.entrySet().stream()
+//                .filter(x -> x.getValue().getProductionPrice() > min && x.getValue().getProductionPrice() < max)
+//                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+//    }
 
 
 

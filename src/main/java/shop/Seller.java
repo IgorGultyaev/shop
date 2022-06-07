@@ -16,16 +16,15 @@ public class Seller implements Transaction {
     }
 
     @Override
-    public void execute(Cart cart,boolean thereOrBack) {
-        if (thereOrBack){
+    public void execute(Cart cart, boolean thereOrBack) {
+        if (thereOrBack) {
             many = many + cart.getPrice();
-            System.out.println(many + "Денег у продавца");
+            System.out.println(many + " Денег у продавца");
 
         } else {
             many = many - cart.getPrice();
-            System.out.println(many+ "Денег у продавца");
+            System.out.println(many + " Денег у продавца");
         }
-
     }
 
     public void refute(String msg) {

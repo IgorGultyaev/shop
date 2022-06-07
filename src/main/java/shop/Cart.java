@@ -8,10 +8,12 @@ public class Cart implements PrintProduction {
     private HashMap<Integer, Production> purchases;
     private User user;
     private double price;
+    private Seller seller;
 
-    public Cart(User user) {
+    public Cart(User user, Seller seller) {
         this.user = user;
         purchases = new HashMap<>();
+        this.seller = seller;
     }
 
     public HashMap<Integer, Production> getPurchases() {
@@ -43,5 +45,9 @@ public class Cart implements PrintProduction {
 
     void clear() {
         this.purchases.clear();
+    }
+
+    public Seller getSeller() {
+        return seller;
     }
 }

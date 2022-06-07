@@ -38,11 +38,13 @@ public class User  implements Transaction, PrintProduction {
         if (thereOrBack){
             purchases.putAll(cart.getPurchases());
             many = many - cart.getPrice();
+            System.out.println(many + " Денег у покупателя");
         }else {
             cart.getPurchases().forEach((key, value) -> purchases.remove(key));
             System.out.println(purchases);
             System.out.println("Деньги поступят на счет в течении 30 банковских дней, сохраняйте чек пока не получите деньги");
             many = many + cart.getPrice();
+            System.out.println(many + " Денег у покупателя");
         }
 
     }

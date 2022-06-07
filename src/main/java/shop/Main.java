@@ -74,8 +74,9 @@ public class Main implements LoadingData {
         boolean exit = true;
         User user = new User("Игорь", 100_000);
         Seller seller = new Seller();
-        Cart cart = new Cart(user);
-        ;
+        Cart cart = new Cart(user, seller);
+        Filter filter = Filter.getFilter();
+
 
         Storehouse storehouse = Storehouse.getStorehouse();
         storehouse.downloadProduction(ParserJsonToProduction
@@ -140,23 +141,27 @@ public class Main implements LoadingData {
                         cart.backProduction(user.getPurchases());
                         Purchases purchases = new Purchases(cart, storehouse, false);
                     }
-//TODO доделать возврат денег продавцу возможно впихнуть его куда нибудь в Purchases
-
                     break;
+
+                case 8:
+                    filter.getRecommend().forEach(System.out::println);
+                    break;
+
 
                 case 20:
                     submenu = false;
                     break;
                 case 21:
-                    storehouse.filterProductionHashtag("Space").forEach((key, value) -> System.out.println(value));
+
+                    filter.filterHashtag(storehouse.getProductions(), "Space");
                     submenu = false;
                     break;
                 case 22:
-                    storehouse.filterProductionByPrice(10_000, 30_000).forEach((key, value) -> System.out.println(value));
+                    filter.filterByPrice(storehouse.getProductions(), 20_000, 30_000);
                     submenu = false;
                     break;
                 case 23:
-                    storehouse.filterProduction("Acer").forEach((key, value) -> System.out.println(value));
+                    filter.filterByManufacturer(storehouse.getProductions(), "Novex");
                     submenu = false;
                     break;
             }
