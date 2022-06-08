@@ -2,6 +2,7 @@ package shop;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 public class Filter implements FilterProductionHashtag, PrintProduction, FilterProductionByPrice, FilterProduction {
     private static Filter filter = null;
@@ -47,7 +48,6 @@ public class Filter implements FilterProductionHashtag, PrintProduction, FilterP
         boolean contains = false;
         for (Production p : views) {
             for (Rating r : ratings) {
-                System.out.println(1);
                 if (p.getProductionID() == r.getProduction().getProductionID()) {
                     contains = true;
                     r.setViews(r.getViews() + 1);
@@ -62,4 +62,22 @@ public class Filter implements FilterProductionHashtag, PrintProduction, FilterP
         ratings.forEach((value) -> recommend.add(value.getProduction()));
         return recommend;
     }
+
+    public void upRating(Production production, boolean good, String description) {
+        boolean contains = false;
+
+        for (Rating rating : ratings) {
+            if (Objects.equals(rating.getProduction().getProductionID(), production.getProductionID())) {
+                rating.setRating(rating.getRating() + (good ? +1 : -1));
+                contains = true;
+            }
+        }
+        if (!contains) {
+            ratings.add(new Rating(production, 0, description, 1, 1));
+        }
+
+
+    }
+
+
 }

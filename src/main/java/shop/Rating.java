@@ -20,8 +20,12 @@ public class Rating implements Comparable{
         return production;
     }
 
-    public double getRating() {
+    public int getRating() {
         return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public String getDescription() {
@@ -32,8 +36,16 @@ public class Rating implements Comparable{
         return views;
     }
 
+    public void setViews(int views) {
+        this.views = views;
+    }
+
     public double getAbsoluteRating() {
         return absoluteRating;
+    }
+
+    public void setAbsoluteRating(int absoluteRating) {
+        this.absoluteRating = absoluteRating;
     }
 
       public int compareTo(@NotNull Rating rating) {
@@ -54,10 +66,6 @@ public class Rating implements Comparable{
                 ", views=" + views +
                 ", absoluteRating=" + absoluteRating +
                 '}';
-    }
-
-    public void setViews(int views) {
-        this.views = views;
     }
 }
 

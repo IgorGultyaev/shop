@@ -22,6 +22,7 @@ public class Main implements LoadingData {
             "6 - Трекинг заказа в системе доставки",
             "7 - Возврат товара",
             "8 - Трекинг заказа в системе доставки",
+            "9 - Рекомендации",
             "0 - Выход"};
 
     private static final String[] filterMenu = {"Выберите по какому критерию отфильтровать",
@@ -30,7 +31,14 @@ public class Main implements LoadingData {
             "2 - Цене",
             "3 - Производителю"
     };
+
+
+    private static final String userName = "Игорь";
+    private static int userMany = 100_000;
     private static final String fileName = "new_data.json";
+    private static int subMenu = 20;
+    private static final int filterMin = 20_000;
+    private static final int filterMax = 30_000;
 
     private static void printAvailableProducts(Storehouse storehouse) {
         storehouse.printingProducts(storehouse.getProductions());
@@ -72,7 +80,7 @@ public class Main implements LoadingData {
         Tracking tracking = null;
         Emitter emitter = new Emitter();
         boolean exit = true;
-        User user = new User("Игорь", 100_000);
+        User user = new User(userName, userMany);
         Seller seller = new Seller();
         Cart cart = new Cart(user, seller);
         Filter filter = Filter.getFilter();
@@ -99,7 +107,7 @@ public class Main implements LoadingData {
                     break;
                 case 2:
                     choice = choice(scanner, filterMenu);
-                    choice = choice + 20;
+                    choice = choice + subMenu;
                     submenu = true;
                     break;
                 case 3:
@@ -133,9 +141,9 @@ public class Main implements LoadingData {
                     tracking.trackingTo(true);
                     break;
 
-                case 7:// Возврат отслеживание посылки
-                    if (tracking == null) {
-                        System.out.println("У пользователя " + user.getUserName() + " не товаров, которые можно вернуть");
+                case 7:// Возврат
+                    if (user.getPurchases().size()<1) {
+                        System.out.println("У пользователя " + user.getUserName() + " нет товаров, которые можно вернуть");
                     } else {
                         tracking.trackingTo(false);
                         cart.backProduction(user.getPurchases());
@@ -144,9 +152,15 @@ public class Main implements LoadingData {
                     break;
 
                 case 8:
-                    filter.getRecommend().forEach(System.out::println);
+                    System.out.println("Для товара " + storehouse.getProduction(1).getProductionType()
+                            + " Добавлен хороший отзыв");
+                    filter.upRating(storehouse.getProduction(1), true, "Хороши товар");
                     break;
 
+                case 9:
+                    System.out.println("Товары, которыми интересуются");
+                    filter.getRecommend().forEach(System.out::println);
+                    break;
 
                 case 20:
                     submenu = false;
@@ -157,7 +171,7 @@ public class Main implements LoadingData {
                     submenu = false;
                     break;
                 case 22:
-                    filter.filterByPrice(storehouse.getProductions(), 20_000, 30_000);
+                    filter.filterByPrice(storehouse.getProductions(), filterMin, filterMax);
                     submenu = false;
                     break;
                 case 23:

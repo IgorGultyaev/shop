@@ -9,6 +9,5 @@ public interface FilterProduction {
         return  productions.entrySet().stream()
                 .filter(x -> hashtag.equals(x.getValue().getManufacturer()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
     }
 }

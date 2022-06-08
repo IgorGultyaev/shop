@@ -15,7 +15,7 @@ public class Purchases {
         LinkedList<Tracking.command> commands = new LinkedList<>();
         commands.add(() -> cart.getUser().execute(cart, thereOrBack));
         commands.add(() -> storehouse.execute(cart, thereOrBack));
-        commands.add(() -> cart.getSeller().execute(cart,thereOrBack));
+        commands.add(() -> cart.getSeller().execute(cart, thereOrBack));
 
         if (thereOrBack) {
             if (cart.getPrice() <= cart.getUser().getMany()) {

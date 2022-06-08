@@ -20,10 +20,10 @@ public interface ParserJsonToProduction {
 
         for (Object jsonObj : lang) {
             Production production = gson.fromJson(jsonObj.toString(), Production.class);
-            if (productions.containsKey(production.getProductionID())){
+            if (productions.containsKey(production.getProductionID())) {
                 throw new ProductionTypeException("Поле productionID не должно повторяться");
             }
-            productions.put(production.getProductionID(),production);
+            productions.put(production.getProductionID(), production);
         }
         return productions;
     }

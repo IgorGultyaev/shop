@@ -1,14 +1,12 @@
 package shop;
 
-//TODO настроить продукты, под сделанный склад и Типы продуктов
 public class Production {
     private final String productionType;
     private final double productionPrice;
-    private final String description; // TODO попробовать сделать ссылкой
+    private final String description;
     private final Integer productionID;
     private final String manufacturer;
-    private int number; //теперь это номер типа товара
-
+    private final int number;
 
     public Production(Integer id, String productionType, String manufacturer, String description, int number, double productionPrice) {
         this.productionType = productionType;
@@ -25,9 +23,6 @@ public class Production {
                 " Цена:" + productionPrice + " || ";
     }
 
-    public void printingAvailableProducts() {
-
-    }
 
     public String getProductionType() {
         return productionType;
@@ -39,10 +34,6 @@ public class Production {
 
     public String getDescription() {
         return description;
-    }
-
-    public int getNumber() {
-        return number;
     }
 
     public Integer getProductionID() {
